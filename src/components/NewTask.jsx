@@ -9,7 +9,7 @@ export default function NewTask() {
           </button>
         </li>
         <li>
-          <button className=" px-6 py-2 bg-stone-800 text-stone-50 hover:bg-stone-950">
+          <button className="rounded px-6 py-2 bg-stone-800 text-stone-50 hover:bg-stone-950">
             Save
           </button>
         </li>
