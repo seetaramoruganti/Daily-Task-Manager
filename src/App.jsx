@@ -18,10 +18,25 @@ function App() {
       };
     });
   }
+
+  function handleAddTask(tasksData) {
+    setTasksState((prevState) => {
+      const newTask = {
+        ...tasksData,
+        id: Math.random(),
+      };
+      return {
+        ...prevState,
+        tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
   let content;
 
+  console.log(TasksState);
+
   if (TasksState.selectedTaskId === null) {
-    content = <NewTask />;
+    content = <NewTask onAdd={handleAddTask} />;
   } else if (TasksState.selectedTaskId === undefined) {
     content = <NoTaskSelected onStartAddTask={handleStartAddTask} />;
   }
