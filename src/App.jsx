@@ -33,12 +33,21 @@ function App() {
       };
     });
   }
+
+  function handleCancelAddTask() {
+    setTasksState((prevState) => {
+      return {
+        ...prevState,
+        selectedTaskId: undefined,
+      };
+    });
+  }
   let content;
 
   console.log(TasksState);
 
   if (TasksState.selectedTaskId === null) {
-    content = <NewTask onAdd={handleAddTask} />;
+    content = <NewTask onAdd={handleAddTask} onCancel={handleCancelAddTask} />;
   } else if (TasksState.selectedTaskId === undefined) {
     content = <NoTaskSelected onStartAddTask={handleStartAddTask} />;
   }
