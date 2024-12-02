@@ -3,6 +3,7 @@ import ProjectsSidebar from "./components/ProjectsSidebar";
 import NoTaskSelected from "./components/NoTaskSelected";
 
 import { useState } from "react";
+import SelectedTask from "./components/SelectedTask";
 
 function App() {
   const [TasksState, setTasksState] = useState({
@@ -19,6 +20,14 @@ function App() {
     });
   }
 
+  function handleSelectTask(id) {
+    setTasksState((prevState) => {
+      return {
+        ...prevState,
+        selectedTaskId: id,
+      };
+    });
+  }
   function handleAddTask(tasksData) {
     setTasksState((prevState) => {
       const taskId = Math.random();
@@ -42,7 +51,11 @@ function App() {
       };
     });
   }
-  let content;
+
+  let selectedTaskHo = TasksState.tasks.find(
+    (task) => task.id === TasksState.selectedTaskId
+  );
+  let content = <SelectedTask task={selectedTaskHo} />;
 
   console.log(TasksState);
 
@@ -58,6 +71,7 @@ function App() {
         <ProjectsSidebar
           onStartAddTask={handleStartAddTask}
           tasks={TasksState.tasks}
+          onSelectTask={handleSelectTask}
         />
         {content}
       </main>
